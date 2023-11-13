@@ -1,5 +1,6 @@
 // importo l'array
 const mieiPosts = require("../db/db");
+// const { post } = require("../routers/posts");
 
 // index
 function index(req, res) {
@@ -41,7 +42,13 @@ function index(req, res) {
 
 // show
 function show(req, res) {
+    // recupero l'id dalla richiesta
+    const postId = req.params.id;
 
+    // recupero il post dalla lista
+    const post = mieiPosts.find(post => post.id == postId);
+
+    res.json(post);
 }
 
 // esporto le funzioni:
