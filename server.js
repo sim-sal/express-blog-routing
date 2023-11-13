@@ -4,8 +4,9 @@ const express = require('express');
 //dotenv
 const dotenv = require('dotenv').config();
 // controllers
-const postsController = require("./controllers/posts");
 const homeController = require("./controllers/home");
+// router
+const postsRouter = require("./routers/posts");
 
 // creiamo l'istanza di express
 const app = express();
@@ -18,7 +19,7 @@ app.get("/", homeController.index);
 app.get("/about", homeController.about);
 app.get("/contacts", homeController.contacts);
 
-app.get("/posts", postsController.index);
+app.use("/posts", postsRouter);
 
 // avviamo il nostro server mettendolo in ascolto
 app.listen(process.env.PORT || 3001, () => {

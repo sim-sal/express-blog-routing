@@ -1,6 +1,7 @@
 // importo l'array
 const mieiPosts = require("../db/db");
 
+// index
 function index(req, res) {
     res.format({
         html: () => {
@@ -38,8 +39,13 @@ function index(req, res) {
     })
 }
 
-// esporto la funzione:
+// show
+function show(req, res) {
 
+}
+
+// esporto le funzioni:
 module.exports = {
     index,
+    show
 }
