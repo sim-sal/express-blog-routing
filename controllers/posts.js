@@ -48,6 +48,12 @@ function show(req, res) {
     // recupero il post dalla lista
     const post = mieiPosts.find(post => post.id == postId);
 
+    // verifico se l'id non esiste, lancio lo status 404
+    if (!post) {
+        res.status(404).send(`Il Post con id ${postId} non esiste!`);
+        return; //interrompo esecuzione della funzione
+    }
+
     res.json(post);
 }
 
