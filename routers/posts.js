@@ -5,7 +5,7 @@ const express = require("express");
 const router = express.Router();
 
 // importo il controller
-const postsController = require("../controllers/posts")
+const postsController = require("../controllers/postsController")
 
 
 
