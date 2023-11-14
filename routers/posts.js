@@ -18,6 +18,10 @@ router.get("/", postsController.index);
 // show
 router.get("/:id", postsController.show);
 
+// create
+router.post("/create", postsController.create);
+
+
 
 
 // esporto l'istanza

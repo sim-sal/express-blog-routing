@@ -57,8 +57,19 @@ function show(req, res) {
     res.json(post);
 }
 
+// create
+function create(req, res) {
+    res.format({
+        html: () => res.send("<h1>Creazione nuovo post</h1>"),
+
+        // Se la richiesta non accetta HTML restituisco un errore 406
+        default: () => res.status(406).send("Not Acceptable")
+    });
+}
+
 // esporto le funzioni:
 module.exports = {
     index,
-    show
+    show,
+    create
 }
