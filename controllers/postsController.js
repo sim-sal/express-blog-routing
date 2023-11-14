@@ -1,5 +1,7 @@
 // importo l'array
 const mieiPosts = require("../db/db");
+// importo il path
+const path = require("path");
 // const { post } = require("../routers/posts");
 
 // index
@@ -67,9 +69,41 @@ function create(req, res) {
     });
 }
 
+// download img
+/**
+ * deve eseguire l'img di quel determinato elemento
+ * @param {import("express").Request} req
+ * @param {import("express").Response} res
+ */
+function downloadImg(req, res) {
+    // recupero lo slug dalla richiesta
+    const slug = req.params.slug;
+
+    // recupero il post dalla lista
+    const post = mieiPosts.find(post => post.slug === slug);
+
+    // verifico se lo Id non esiste, lancio lo status 404
+    if (!post) {
+        res.status(404).send(`Il Post con lo Id "${slug}" non esiste!`);
+        return; //interrompo esecuzione della funzione
+    }
+
+    const filePath = path.resolve(
+        __dirname,
+        "..",
+        "public",
+        "imgs",
+        "posts",
+        post.image
+    );
+
+    res.download(filePath);
+}
+
 // esporto le funzioni:
 module.exports = {
     index,
     show,
-    create
+    create,
+    downloadImg
 }
